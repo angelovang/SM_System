@@ -1,0 +1,15 @@
+{% extends 'home_page.html' %}
+{% load static %}
+
+{% block content %}
+    <h2 class="center"> Create service task :</h2>
+<div class="info div.container ">
+    <form method="post" action="{% url 'create_task' %}" >
+        {{form}}
+        {% csrf_token %}
+        
+        <input type="submit" value="Submit" class="center"  >
+        <a href="{% url 'all_tasks' %}" class="center" >Back to tasks</a>
+    </form>
+</div>
+{% endblock %}

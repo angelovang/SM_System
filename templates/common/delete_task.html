@@ -1,0 +1,17 @@
+{% extends 'home_page.html' %}
+{% load static %}
+
+{% block content %}
+    <h2 class="center"> Delete service task :</h2>
+<div class="info div.container ">
+    <form method="post" >
+        <h3 style="color:red" class="center" >Are you sure you want to delete:</h3>
+        <h3 style="color:red" class="center">Task {{ object }}"</h3>
+        {{form.as_p}}
+        {% csrf_token %}
+
+        <input type="submit" value="Delete" class="center" style="background-color: indianred">
+        <a href="{% url 'all_tasks' %}" class="center">Back to tasks</a>
+    </form>
+</div>
+{% endblock %}

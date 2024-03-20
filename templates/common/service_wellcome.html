@@ -1,0 +1,26 @@
+{% extends 'home_page.html' %}
+{% load static %}
+
+{% block content %}
+<div style="align-items: center">
+    <h2 class="headers">Repairs Types :</h2>
+    <ul id="myUL">
+      <li><a href="{% url 'computers' %}"><i class="fa fa-solid fa-desktop"></i> Desktop computers</a></li>
+        {% block computers %}
+        {% endblock %}
+      <li><a href="{% url 'laptops' %}"><i class="fa fa-solid fa-laptop"></i> Laptops</a></li>
+        {% block laptops %}
+        {% endblock %}
+      <li><a href="{% url 'monitors' %}"><i class="fa fa-solid fa-tv"></i> Monitors</a></li>
+            {% block monitors %}
+        {% endblock %}
+      <li><a href="{% url 'printers' %}"><i class="fa fa-solid fa-print"></i> Printers</a></li>
+            {% block printers %}
+        {% endblock %}
+    </ul>
+    
+    <h2 class="headers">Where to find us :</h2>
+    <img src="{% static 'images/service_address.jpg' %}" alt="Service location" class="center">
+    
+</div>
+{% endblock %}

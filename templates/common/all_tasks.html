@@ -1,0 +1,32 @@
+{% extends 'home_page.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="info div">
+    <h2 class="headers"> All service tasks :</h2>
+    <div>
+        <a href="{% url 'create_task'%}" class="button">Create new task</a>
+    </div>
+    <table class="table">
+        <tr >
+            <th>Device</th>
+            <th>Description</th>
+            <th>Price</th>
+        </tr>
+        {% for row in object_list %}
+        <tr>
+            <td>{{ row.device }}</td>
+            <td >{{ row.description }}</td>
+            <td>{{ row.price }} lv.</td>
+            <td><a class="edit-button" href="{% url 'edit_task' pk=row.pk %}" >Edit task</a></td>
+            <td><a class="edit-button" style="background-color: #c81e1e" href="{% url 'delete_task' pk=row.pk %}" >Delete task</a></td>
+        </tr>
+        {% empty %}
+            <p>No records !</p>
+        {% endfor %}
+
+    </table>
+
+</div>
+{% endblock %}

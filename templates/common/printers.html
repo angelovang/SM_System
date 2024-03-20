@@ -1,0 +1,25 @@
+{% extends 'common/service_wellcome.html' %}
+
+{% block printers %}
+<div class="info div">
+        <h2 class="headers">Printers repairs</h2>
+    <table class="table">
+        <tr >
+            <th >Description</th>
+            <th>Price</th>
+        </tr>
+        {% for row in object_list %}
+        <tr>
+            <td >{{ row.description }}</td>
+            <td>{{ row.price }} lv.</td>
+        </tr>
+        {% empty %}
+            <p>No records !</p>    
+        {% endfor %}
+         
+    </table>
+    <div>
+        <a href="{% url 'home_page'%}" class="button">Back to Home</a>
+    </div>
+</div>
+{% endblock %}

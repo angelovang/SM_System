@@ -1,0 +1,28 @@
+{% load static %}
+<nav>
+<div class="navbar">
+    <a class="active" href="{% url 'home_page' %}"><i class="fa fa-fw fa-home"></i> Home</a>
+    {% if not request.user.is_authenticated %}
+        <a href="#"><i class="fa fa-solid fa-user-plus"></i> For Employees</a>
+        <a href="#"><i class="fa fa-solid fa-user"></i> For Clients</a>
+    {% else %}
+        {% if  True %}
+            <a href="#"><i class="fa fa-solid fa-list-alt"></i> New Order</a>
+            <a href="#"><i class="fa fa-solid fa-list"></i> Orders List</a>
+            <a href="#"><i class="fa fa-solid fa-registered"></i> Register Employee</a>
+            <a href="{% url 'all_tasks' %}"><i class="fa fa-solid fa-info-circle"></i>Service Tasks</a>
+            
+        {% else %}
+            <a href="#"><i class="fa fa-solid fa-hourglass-start"></i> Start repair</a>
+            <a href="#"><i class="fa fa-solid fa-hourglass-end"></i> End repair</a>
+        {% endif %}    
+    {% endif %}
+
+    <div >
+        {% if request.user.is_authenticated %}
+            <a class="split" href="#"><i class="fa fa-fw fa-user "></i> Login</a>
+        {% endif %}
+        <a class="split" href="#"><i class="fa fa-fw fa-envelope"></i> Contacts</a>
+    </div>
+</div>
+</nav>

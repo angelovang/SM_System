@@ -1,0 +1,144 @@
+#myUL {
+  /* Remove default list styling */
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+#myUL li a {
+  border: 1px solid #ddd; /* Add a border to all links */
+  background-color: #f6f6f6; /* Grey background color */
+  padding: 12px; /* Add some padding */
+  text-decoration: none; /* Remove default text underline */
+  font-size: 18px; /* Increase the font-size */
+  color: black; /* Add a black text color */
+  display: block; /* Make it into a block element to fill the whole list */
+  width: 30%;
+  margin: auto;
+  margin-top: -1px; /* Prevent double borders */
+}
+
+#myUL li a:hover:not(.header) {
+  background-color: #eee; /* Add a hover effect to all links, except for headers */
+}
+
+.headers {
+  text-align: center;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 25%;
+}
+
+.info div{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 25%;
+}
+.info input[type=text], input[type=number], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.info input[type=submit], .info a {
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+
+}
+
+.info input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+.info a {
+  text-decoration: none;
+  background-color: #bfc3c2;
+  color: black;
+  text-align: center;
+}
+.info a:hover {
+  background-color: #c6c6ba;
+}
+
+.info div.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 5px;
+  width: 25%;
+}
+
+.table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 40%;
+  border: 1px solid #ddd;
+  margin: auto;
+}
+
+.table th, td {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 10px;
+  height: 40px;
+}
+
+.table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+
+
+.button {
+  background-color: #bfc3c2;
+  border: none;
+  color: black;
+  padding: 10px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block ;
+  margin: 10px 30%;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.edit-button {
+  background-color: #bfc3c2;
+  border: none;
+  color: black;
+  padding: 1px 1px;
+  text-decoration: none;
+  display: inline-block ;
+  margin: 1px 1px;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.delete-button {
+  background-color: red;
+  border: none;
+  color: white;
+  padding: 5px 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block ;
+  margin: 5px 5px;
+  cursor: pointer;
+  border-radius: 2px;
+}
+

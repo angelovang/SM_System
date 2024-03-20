@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SM_System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">   
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/forms.css' %}">
+</head>
+<body>
+    <div class="hello">
+        <h2 >
+            Wellcome to PC-Service !___<i class="fa fa-solid fa-phone-square"></i> Phone: +359 889 xxx xxx
+        </h2>
+    </div>
+    <div >
+        <div >
+                {% include 'common/nav.html' %}
+
+                {% block content %}
+                {% endblock content %}
+
+        </div>
+    </div>
+</body>
+<footer class="footer" >
+    <p>Service: 0889xxxxxx, Sales: 0886 xxx xxx | Email: pc_service@gmail.com</p>
+    <p>Work time : monday-friday 9:00-18:00 | <i class="fa fa-solid fa-copyright"></i> PC_Service.bg</p>
+</footer>
+</html>
