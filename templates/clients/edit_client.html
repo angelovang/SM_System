@@ -1,0 +1,15 @@
+{% extends 'home_page.html' %}
+{% load static %}
+
+{% block content %}
+    <h2 class="center"> Edit Client :</h2>
+<div class="info div.container ">
+    <form method="post"  >
+        {{form}}
+        {% csrf_token %}
+
+        <input type="submit" value="Update" class="center" >
+        <a href="{% url 'clients_list' %}" class="center">Back to tasks</a>
+    </form>
+</div>
+{% endblock %}

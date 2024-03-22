@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth import mixins as auth_mixins
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic as generic_views
@@ -12,7 +12,7 @@ def index(request):
     return render(request, 'common/service_wellcome.html')
 
 
-class CreateServiceInfo(generic_views.CreateView):
+class CreateServiceInfo(auth_mixins.LoginRequiredMixin, generic_views.CreateView):
     model = ServiceInfo
     fields = '__all__'
     labels = {
@@ -24,7 +24,7 @@ class CreateServiceInfo(generic_views.CreateView):
     success_url = '/info/create_task'
 
 
-class AllTasksListView(ListView):
+class AllTasksListView(auth_mixins.LoginRequiredMixin, ListView):
     model = ServiceInfo
     template_name = 'common/all_tasks.html'
 
@@ -32,14 +32,14 @@ class AllTasksListView(ListView):
         return super().get_queryset()
 
 
-class TaskEditView(UpdateView):
+class TaskEditView(auth_mixins.LoginRequiredMixin, UpdateView):
     model = ServiceInfo
     fields = '__all__'
     template_name = 'common/edit_task.html'
     success_url = '/info/all_tasks'
 
 
-class TaskDeleteView(DeleteView):
+class TaskDeleteView(auth_mixins.LoginRequiredMixin, DeleteView):
     template_name = 'common/delete_task.html'
     model = ServiceInfo
     success_url = reverse_lazy('all_tasks')

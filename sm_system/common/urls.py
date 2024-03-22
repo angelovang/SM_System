@@ -13,6 +13,6 @@ urlpatterns = [
         path('printers/', PrintersListView.as_view(), name='printers'),
         path('all_tasks/', AllTasksListView.as_view(), name='all_tasks'),
         path('edit_task/<int:pk>', TaskEditView.as_view(), name='edit_task'),
-        path('delete_task/<int:pk>',TaskDeleteView.as_view(), name='delete_task')
+        path('delete_task/<int:pk>',TaskDeleteView.as_view(), name='delete_task'),
     ])),
 ]

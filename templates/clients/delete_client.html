@@ -6,12 +6,12 @@
 <div class="info div.container ">
     <form method="post" >
         <h3 style="color:red" class="center" >Are you sure you want to delete:</h3>
-        <h3 style="color:red" class="center">Task {{ object }}"</h3>
+        <h3 style="color:red" class="center">Client {{ object }}</h3>
         {{form.as_p}}
         {% csrf_token %}
 
-        <input type="submit" value="Delete" class="center" style="background-color: indianred; color:white">
-        <a href="{% url 'all_tasks' %}" class="center">Back to tasks</a>
+        <input type="submit" value="Delete" class="center" style="background-color: indianred">
+        <a href="{% url 'clients_list' %}" class="center">Back to Clients list</a>
     </form>
 </div>
 {% endblock %}

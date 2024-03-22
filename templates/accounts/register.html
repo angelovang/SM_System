@@ -1,0 +1,15 @@
+{% extends 'home_page.html' %}
+{% load static %}
+
+{% block content %}
+    <h2 class="center"> Register Employee :</h2>
+<div class="info div.container ">
+    <form method="post" action="{% url 'register_employee' %}" >
+        {{form}}
+        {% csrf_token %}
+        
+        <input type="submit" value="Submit" class="center"  >
+        
+    </form>
+</div>
+{% endblock %}

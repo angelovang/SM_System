@@ -1,0 +1,34 @@
+{% extends 'home_page.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="info div">
+    <h2 class="headers"> Clients list:</h2>
+    <div class="center">
+        <a href="{% url 'create_client'%}" class="button ">Create new Client</a>
+    </div>
+    <table class="table">
+        <tr >
+            <th>Client ID</th>
+            <th>Email</th>
+            <th>Full name</th>
+            <th>Phone number</th>
+        </tr>
+        {% for client in object_list %}
+        <tr>
+            <td>{{ client.id }}</td>
+            <td >{{ client.email }}</td>
+            <td>{{   client }}</td>
+            <td>{{ client.phone_number }}</td>
+            <td><a class="edit-button" href="{% url 'edit_client' pk=client.pk %}" >Edit Client</a></td>
+            <td><a class="edit-button" style="background-color: #c81e1e; color:white" href="{% url 'delete_client' pk=client.pk %}" >Delete Client</a></td>
+        </tr>
+        {% empty %}
+            <h2 class="center" >No records for Clients!</h2>
+        {% endfor %}
+
+    </table>
+
+</div>
+{% endblock %}

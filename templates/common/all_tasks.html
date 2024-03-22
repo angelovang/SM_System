@@ -20,7 +20,7 @@
             <td >{{ row.description }}</td>
             <td>{{ row.price }} lv.</td>
             <td><a class="edit-button" href="{% url 'edit_task' pk=row.pk %}" >Edit task</a></td>
-            <td><a class="edit-button" style="background-color: #c81e1e" href="{% url 'delete_task' pk=row.pk %}" >Delete task</a></td>
+            <td><a class="edit-button" style="background-color: #c81e1e; color:white" href="{% url 'delete_task' pk=row.pk %}" >Delete task</a></td>
         </tr>
         {% empty %}
             <p>No records !</p>
