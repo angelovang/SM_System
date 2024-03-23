@@ -6,6 +6,7 @@ from django.contrib.auth import views as auth_views, get_user_model, logout
 
 
 from sm_system.accounts.forms import RegisterEmplForm
+from sm_system.accounts.models import SmsUser
 
 UserModel = get_user_model()
 
@@ -29,6 +30,13 @@ def logout_user(request):
 #     next_page = 'home_page'
 
 
+class EmployeesListView(views.ListView):
+    model = SmsUser
+    template_name = 'accounts/employees_list.html'
+    def get_queryset(self):
+        return super().get_queryset()
+
+
 class EmployeesDetailsView(views.DetailView):
     template_name = 'accounts/employees_details.html'
     model = UserModel
@@ -46,9 +54,9 @@ class EmployeesDetailsView(views.DetailView):
         return context
 
 
-class ProfileEditView(views.UpdateView):
-    template_name = 'accounts/profile-edit-page.html'
-
-
-class ProfileDeleteView(views.DeleteView):
-    template_name = 'accounts/profile-delete-page.html'
+# class ProfileEditView(views.UpdateView):
+#     template_name = 'accounts/profile-edit-page.html'
+#
+#
+# class ProfileDeleteView(views.DeleteView):
+#     template_name = 'accounts/profile-delete-page.html'

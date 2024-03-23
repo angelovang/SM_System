@@ -1,0 +1,31 @@
+{% extends 'home_page.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="info div">
+    <h2 class="headers">Employees list:</h2>
+
+    <table class="table">
+        <tr >
+            <th>Employee Id</th>
+            <th>Email</th>
+            <th>Full name</th>
+            <th>Phone number</th>
+        </tr>
+        {% for empl in object_list %}
+        <tr>
+            <td>{{ empl.id }}</td>
+            <td >{{ empl.email }}</td>
+            <td>{{   empl.get_full_name }}</td>
+            <td>{{ empl.phone_number }}</td>
+            <td><a class="edit-button" href="#" >Details</a></td>
+        </tr>
+        {% empty %}
+            <h2 class="center" >No records for Employees!</h2>
+        {% endfor %}
+
+    </table>
+
+</div>
+{% endblock %}
