@@ -96,7 +96,7 @@ select {
 .table {
   border-collapse: collapse;
   border-spacing: 0;
-  width: 40%;
+  width: 25%;
   border: 1px solid #ddd;
   margin: auto;
 }

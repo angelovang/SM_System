@@ -1,0 +1,22 @@
+{% extends 'home_page.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="info div">
+    <h2 class="headers"> Orders details:</h2>
+    <div class="info-div" style="width: 100%">
+        <p>Order id: {{ object.so_id }}</p>
+        <p>Order password: {{ object.so_pass }}</p>
+        <p>Accept date: {{ object.accept_date }}</p>
+        <p>Client name: {{ object.client.full_name }}</p>
+        <p>Client email: {{ object.client.email }}</p>
+        <p>Client phone number: {{ object.client.phone_number }}</p>
+        <p>Device type: {{ object.device_type }}</p>
+        <p>Device data: {{ object.device_data }}</p>
+        <p>Issue description: {{ object.issue_description }}</p>
+    </div>
+{#        <a class="edit-button" href="{% url 'order_details' pk=order.pk %}" >Order details</a>#}
+
+</div>
+{% endblock %}

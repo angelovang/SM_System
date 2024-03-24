@@ -1,0 +1,15 @@
+{% extends 'home_page.html' %}
+{% load static %}
+
+{% block content %}
+    <h2 class="center"> Edit Order :</h2>
+<div class="info div.container ">
+    <form method="post"  >
+        {{form.as_p}}
+        {% csrf_token %}
+
+        <input type="submit" value="Update" class="center" >
+        <a href="#" class="center">Print a copy</a>
+    </form>
+</div>
+{% endblock %}

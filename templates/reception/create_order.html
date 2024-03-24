@@ -1,0 +1,15 @@
+{% extends 'home_page.html' %}
+{% load static %}
+
+{% block content %}
+    <h2 class="center">Create Order</h2>
+<div class="info div.container ">
+    <form method="post" action="{% url 'create_order' %}" >
+        {{form}}
+        {% csrf_token %}
+        
+        <input type="submit" value="Submit" class="center"  >
+        <a href="{% url 'orders_list' %}" class="center" >Back to Order list</a>
+    </form>
+</div>
+{% endblock %}
