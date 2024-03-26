@@ -10,25 +10,28 @@
     </div>
     <table class="table" style="width: 100%">
         <tr >
-            <th>Client ID</th>
-            <th>Email</th>
+            <th>so_id</th>
+            <th>accept_date</th>
             <th>Full name</th>
             <th>Phone number</th>
+            <th>Device type</th>
+            <th>Device data</th>
+            <th>Issue description</th>
         </tr>
         {% for order in object_list %}
         <tr>
             <td>{{ order.so_id }}</td>
-            <td >{{ order.so_pass }}</td>
             <td>{{ order.accept_date }}</td>
             <td>{{ order.client }}</td>
             <td>{{ order.client.phone_number }}</td>
             <td>{{ order.device_type }}</td>
             <td>{{ order.device_data }}</td>
             <td>{{ order.issue_description }}</td>
-            <td><a class="edit-button" href="{% url 'order_details' pk=order.pk %}" >Order details</a></td>
+            <td><a class="edit-button" href="{% url 'edit_order' pk=order.pk %}" >Edit order</a></td>
+            <td><a class="edit-button" style="background-color: #c81e1e; color:white" href="{% url 'delete_order' pk=order.pk %}" >Delete order</a></td>
         </tr>
         {% empty %}
-            <h2 class="center" >No records for Clients!</h2>
+            <h2 class="center" >No records in Orders!</h2>
         {% endfor %}
 
     </table>

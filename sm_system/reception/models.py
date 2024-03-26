@@ -1,8 +1,11 @@
+from datetime import date
+
 from django.db import models
 
 from sm_system.accounts.models import SmsUser
 from sm_system.clients.models import Client
 from tools.generate_id import generate_unique_id
+from tools.last_client import last_client
 
 ORDER_STATUS = {
     'open': 'Open',
@@ -20,7 +23,7 @@ DEVICE_TYPE = {
 
 
 class ServiceOrder(models.Model):
-    SK_MAX_LEN = 8
+    SK_MAX_LEN = 20
     DEVICE_TYPE_MAX_LEN = 20
     DEVICE_DATA_MAX_LEN = 200
     PRICE_MAX_LENGTH = 10
@@ -35,20 +38,20 @@ class ServiceOrder(models.Model):
         editable=False,
     )
 
-    so_pass = models.CharField(
-        max_length=SK_MAX_LEN,
-        unique=True,
-        default=generate_unique_id(),
-        editable=False,
-    )
+    # so_pass = models.CharField(
+    #     max_length=SK_MAX_LEN,
+    #     unique=True,
+    #     default=generate_unique_id(),
+    #     editable=False,
+    # )
 
     accept_date = models.DateField(
-        auto_now_add=True,
+        default=date.today,
         blank=False,
         null=False,
     )
 
-    client = models.ForeignKey(Client, on_delete=models.CASCADE, null=False, blank=False)
+    client = models.ForeignKey(Client, on_delete=models.CASCADE, null=False, blank=False, default=last_client())
 
     technician = models.ForeignKey(SmsUser, on_delete=models.CASCADE, null=True, blank=True)
 
@@ -67,16 +70,20 @@ class ServiceOrder(models.Model):
     )
 
     issue_description = models.TextField(
-        max_length = ISSUE_MAX_LEN,
+        max_length=ISSUE_MAX_LEN,
     )
 
     status = models.CharField(
         max_length=STATUS_MAX_LEN,
         choices=ORDER_STATUS,
+        default='Open',
     )
 
     class Meta:
         ordering = ('-pk',)
+
+    def __str__(self):
+        return f'{self.id}--{self.client}--{self.device_type}--{self.issue_description}'
 
 
 class ServiceOrderHistory(models.Model):
@@ -92,11 +99,8 @@ class ServiceOrderHistory(models.Model):
     resolution_description = models.TextField()
 
     price = models.FloatField(
-        default= 0.00,
+        default=0.00,
         null=False,
         blank=False,
     )
-
-
-
 

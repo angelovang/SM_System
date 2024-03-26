@@ -1,1 +1,18 @@
-<h1>Delete order</h1>
+{% extends 'home_page.html' %}
+{% load static %}
+
+{% block content %}
+    <h2 class="center"> Delete service task :</h2>
+<div class="info div.container ">
+    <form method="post" >
+        <h3 style="color:red" class="center" >Are you sure you want to delete Order ?</h3>
+        <h3 style="color:red" class="center">Order {{ object }}</h3>
+        
+        {{form.as_p}}
+        {% csrf_token %}
+
+        <input type="submit" value="Delete" class="center" style="background-color: indianred">
+        <a href="{% url 'orders_list' %}" class="center">Back to Orders list</a>
+    </form>
+</div>
+{% endblock %}

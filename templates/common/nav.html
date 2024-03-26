@@ -6,14 +6,14 @@
         <a href="{% url 'login_user' %}"><i class="fa fa-solid fa-user-plus"></i> For Employees</a>
         <a href="{% url 'client_view' %}"><i class="fa fa-solid fa-user"></i> For Clients</a>
     {% else %}
-        {% if  True %}
+        {% if request.user.user_type == 'receptionist' or request.user.user_type == 'manager'%}
             <a href="{% url 'clients_list' %}"><i class="fa fa-fw fa-users"></i> Clients List</a>
             <a href="{% url 'create_order' %}"><i class="fa fa-solid fa-list-alt"></i> New Order</a>
             <a href="{% url 'orders_list' %}"><i class="fa fa-solid fa-list"></i> Orders List</a>
             <a href="{% url 'all_tasks' %}"><i class="fa fa-solid fa-info-circle"></i> Service Tasks</a>
             <a href="{% url 'employees_list' %}"><i class="fa fa-fw fa-user-o"></i> Employees List</a>
             
-        {% else %}
+        {% elif request.user.user_type == 'technician' or request.user.user_type == 'manager'%}
             <a href="#"><i class="fa fa-solid fa-hourglass-start"></i> Start repair</a>
             <a href="#"><i class="fa fa-solid fa-hourglass-end"></i> End repair</a>
         {% endif %}    

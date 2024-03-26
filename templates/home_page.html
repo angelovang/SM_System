@@ -11,11 +11,13 @@
 {#    <link rel="stylesheet" href="{% static 'css/client_view.css' %}">#}
 </head>
 <body>
+    {% if not request.user.is_authenticated %}
     <div class="hello">
         <h2 >
             Wellcome to PC-Service !___<i class="fa fa-solid fa-phone-square"></i> Phone: +359 889 xxx xxx
         </h2>
     </div>
+    {% endif %}
     <div >
         <div >
                 {% include 'common/nav.html' %}

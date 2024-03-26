@@ -3,13 +3,32 @@
 
 {% block content %}
     <h2 class="center">Create Order</h2>
-<div class="info div.container ">
-    <form method="post" action="{% url 'create_order' %}" >
-        {{form}}
-        {% csrf_token %}
+<div class="row info div div">    
+    <div class="info div.container column">
+        <form method="post" >
+            {{client}}
+            {% csrf_token %}
+            
+            {% if client_saved  %}
+                <h3 class="center" style="color: darkgreen">Client is saved successfully !</h3>
+            {% else %}
+                <input type="submit" value="Submit" class="center"  >
+            {% endif %}
+        </form>
+    </div>
         
-        <input type="submit" value="Submit" class="center"  >
-        <a href="{% url 'orders_list' %}" class="center" >Back to Order list</a>
-    </form>
+    <div class="info div.container column">
+        <form method="post"  >
+            {{order}}
+            {% csrf_token %}
+            
+            {% if order_saved  %}
+                <h3 class="center" style="color: darkgreen">Order is saved successfully !</h3>
+            {% else %}
+                <input type="submit" value="Submit" class="center"  >
+            {% endif %}
+            <a href="{% url 'orders_list' %}" class="center" >Back to Order list</a>
+        </form>
+    </div>
 </div>
 {% endblock %}

@@ -1,22 +1,52 @@
-{% extends 'home_page.html' %}
 {% load static %}
-
-{% block content %}
-
-<div class="info div">
-    <h2 class="headers"> Orders details:</h2>
-    <div class="info-div" style="width: 100%">
-        <p>Order id: {{ object.so_id }}</p>
-        <p>Order password: {{ object.so_pass }}</p>
-        <p>Accept date: {{ object.accept_date }}</p>
-        <p>Client name: {{ object.client.full_name }}</p>
-        <p>Client email: {{ object.client.email }}</p>
-        <p>Client phone number: {{ object.client.phone_number }}</p>
-        <p>Device type: {{ object.device_type }}</p>
-        <p>Device data: {{ object.device_data }}</p>
-        <p>Issue description: {{ object.issue_description }}</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SM_System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">   
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/forms.css' %}">
+{#    <link rel="stylesheet" href="{% static 'css/client_view.css' %}">#}
+</head>
+<body style="display:flex; align-items: center; flex-direction: column">
+    <div class="hello" style="width: 50%">
+        <h2 >
+            Wellcome to PC-Service !___<i class="fa fa-solid fa-phone-square"></i> Phone: +359 889 xxx xxx
+        </h2>
     </div>
-{#        <a class="edit-button" href="{% url 'order_details' pk=order.pk %}" >Order details</a>#}
 
-</div>
-{% endblock %}
+    <div class="receipt" >
+            
+            <h2 class="headers"> Receipt for clients :</h2>
+        
+            <p><b>Order id:</b>  {{ object.so_id }}</p>
+            <p><b>Accept date:</b>  {{ object.accept_date }}</p>
+            <p><b>Client name:</b>  {{ object.client }}</p>
+            <p><b>Client email:</b>  {{ object.client.email }}</p>
+            <p><b>Client phone number:</b>  {{ object.client.phone_number }}</p>
+            <p><b>Device type:</b>  {{ object.device_type }}</p>
+            <p><b>Device data:</b>  {{ object.device_data }}</p>
+            <p><b>Issue description:</b>  {{ object.issue_description }}</p>
+        
+            <div>
+                 <button style="font-size: larger; background-color: #04AA6D; margin-top: 20px" onclick="window.print()">Print this page</button>
+            </div>
+        
+            <div>
+                <a class="edit-button " href="{% url 'orders_list'%}" style="margin-top: 20px; font-size: larger">Back ot orders list</a>
+            </div>
+          
+           
+            
+    </div>
+
+</body>
+<footer class="footer" style="width: 50%;">
+    <p>Service: 0889xxxxxx, Sales: 0886 xxx xxx | Email: pc_service@gmail.com</p>
+    <p>Work time : monday-friday 9:00-18:00 | <i class="fa fa-solid fa-copyright"></i> PC_Service.bg</p>
+</footer>
+</html>
+
+

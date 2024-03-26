@@ -9,7 +9,12 @@
         {% csrf_token %}
 
         <input type="submit" value="Update" class="center" >
-        <a href="#" class="center">Print a copy</a>
+        <div style="display:flex; align-items: inherit">
+            <a href="" onclick="window.print()" class="center">Print a copy</a>
+            <a href="{% url 'orders_list' %}"  class="center">Back to oreders list</a>
+        </div>
+       
+
     </form>
 </div>
 {% endblock %}
