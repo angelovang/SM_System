@@ -5,8 +5,9 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, ListView, DeleteView, DetailView
 
-from sm_system.reception.forms import OrderForm, ClientForm
-from sm_system.reception.models import ServiceOrder
+from sm_system.clients.forms import ClientForm
+from sm_system.reception.forms import OrderForm, HistoryStartForm
+from sm_system.reception.models import ServiceOrder, OrdersHistory
 
 
 def order_create(request):
@@ -88,3 +89,19 @@ class OrderDetailsView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
+
+
+class StartRepairView(ListView):
+    model = ServiceOrder
+    form_class= HistoryStartForm
+    template_name = 'reception/start_history.html'
+    success_url = reverse_lazy('orders_list')
+
+    def get_queryset(self):
+        return super().get_queryset().filter(status='open')
+
+class EndRepairView(UpdateView):
+    model = OrdersHistory
+    # form_class =
+    template_name = 'reception/end_history.html'
+    success_url = reverse_lazy('home_page')

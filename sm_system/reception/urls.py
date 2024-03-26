@@ -1,6 +1,6 @@
 from django.urls import path
 from sm_system.reception.views import OrdersListView, OrderEditView, OrderDeleteView, OrderDetailsView, \
-    order_create
+    order_create, StartRepairView, EndRepairView
 
 urlpatterns = [
     # path('create_order/', OrderCreateView.as_view(), name='create_order'),
@@ -9,4 +9,6 @@ urlpatterns = [
     path('edit_order/<int:pk>', OrderEditView.as_view(), name='edit_order'),
     path('delete_order/<int:pk>', OrderDeleteView.as_view(), name='delete_order'),
     #path('order_details/<int:pk>', OrderDetailsView.as_view(), name='order_details'),
+    path('start_repair/', StartRepairView.as_view(), name='start_repair'),
+    path('end_repair/', EndRepairView.as_view(), name='end_repair'),
 ]

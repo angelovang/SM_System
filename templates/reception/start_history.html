@@ -1,0 +1,38 @@
+{% extends 'home_page.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="info div "  >
+    <h2 class="headers">Start Order:</h2>
+
+    <table class="table" style="width: 100%">
+        <tr >
+            <th>accept_date</th>
+            <th>Full name</th>
+            <th>Phone number</th>
+            <th>Device data</th>
+            <th>Issue description</th>
+            <th>Status</th>
+            <th>Technician</th>
+        </tr>
+        {% for order in object_list %}
+        <tr>
+            <td>{{ order.accept_date }}</td>
+            <td>{{ order.client }}</td>
+            <td>{{ order.client.phone_number }}</td>
+            <td>{{ order.device_data }}</td>
+            <td>{{ order.issue_description }}</td>
+            <td>{{ order.status }}</td>
+            <td>{{ order.technician }}</td>
+            <td><a class="edit-button" href="{% url 'edit_order' pk=order.pk %}" >Edit order</a></td>
+            <td><a class="edit-button" style="background-color: #c81e1e; color:white" href="{% url 'delete_order' pk=order.pk %}" >Delete order</a></td>
+        </tr>
+        {% empty %}
+            <h2 class="center" >No records in Orders!</h2>
+        {% endfor %}
+
+    </table>
+
+</div>
+{% endblock %}

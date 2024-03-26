@@ -46,9 +46,9 @@ class ServiceOrder(models.Model):
     # )
 
     accept_date = models.DateField(
-        default=date.today,
         blank=False,
         null=False,
+        default=date.today,
     )
 
     client = models.ForeignKey(Client, on_delete=models.CASCADE, null=False, blank=False, default=last_client())
@@ -86,14 +86,20 @@ class ServiceOrder(models.Model):
         return f'{self.id}--{self.client}--{self.device_type}--{self.issue_description}'
 
 
-class ServiceOrderHistory(models.Model):
+class OrdersHistory(models.Model):
     order = models.ForeignKey(ServiceOrder, on_delete=models.CASCADE)
     technician = models.ForeignKey(SmsUser, on_delete=models.CASCADE, null=True, blank=True)
 
+    start_date = models.DateField(
+        default=date.today,
+        blank=False,
+        null=False,
+    )
+
     date_of_complete = models.DateField(
-        auto_now=True,
         blank=True,
         null=True,
+        default=date.today,
     )
 
     resolution_description = models.TextField()
@@ -103,4 +109,3 @@ class ServiceOrderHistory(models.Model):
         null=False,
         blank=False,
     )
-
