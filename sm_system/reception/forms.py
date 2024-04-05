@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.admin.widgets import AdminDateWidget
 
-from sm_system.reception.models import ServiceOrder
+from sm_system.reception.models import ServiceOrder, OrdersHistory
 
 
 class OrderForm(forms.ModelForm):
@@ -22,7 +22,16 @@ class OrderForm(forms.ModelForm):
         self.fields['issue_description'].widget.attrs['class'] = 'info'
         self.fields['status'].widget.attrs['class'] = 'info'
 
-class HistoryStartForm(forms.ModelForm):
+
+class RepairStartForm(forms.ModelForm):
     class Meta:
         model = ServiceOrder
         fields = ['accept_date','client','device_data','issue_description','status','technician']
+
+
+class HistoryForm(forms.ModelForm):
+    class Meta:
+        model = OrdersHistory
+        fields = '__all__'
+
+

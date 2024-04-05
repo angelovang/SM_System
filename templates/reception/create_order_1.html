@@ -2,28 +2,28 @@
 {% load static %}
 
 {% block content %}
-    <h2 class="center">Start history</h2>
+    <h2 class="center">Create Order</h2>
 <div class="row info div div">    
     <div class="info div.container column">
         <form method="post" >
-            {{select_form}}
+            {{client}}
             {% csrf_token %}
             
-{#            {% if client_saved  %}#}
-{#                <h3 class="center" style="color: darkgreen">Client is saved successfully !</h3>#}
-{#            {% else %}#}
-{#                <input type="submit" value="Submit" class="center"  >#}
-{#            {% endif %}#}
+            {% if client_saved  %}
+                <h3 class="center" style="color: darkgreen">Client is saved successfully !</h3>
+            {% else %}
+                <input type="submit" value="Submit" class="center"  >
+            {% endif %}
         </form>
     </div>
         
     <div class="info div.container column">
         <form method="post"  >
-            {{history_form}}
+            {{order}}
             {% csrf_token %}
             
             {% if order_saved  %}
-                <h3 class="center" style="color: darkgreen">History is saved successfully !</h3>
+                <h3 class="center" style="color: darkgreen">Order is saved successfully !</h3>
             {% else %}
                 <input type="submit" value="Submit" class="center"  >
             {% endif %}

@@ -34,16 +34,9 @@ class ServiceOrder(models.Model):
     so_id = models.CharField(
         max_length=SK_MAX_LEN,
         unique=True,
-        default=generate_unique_id(),
+        default=generate_unique_id,
         editable=False,
     )
-
-    # so_pass = models.CharField(
-    #     max_length=SK_MAX_LEN,
-    #     unique=True,
-    #     default=generate_unique_id(),
-    #     editable=False,
-    # )
 
     accept_date = models.DateField(
         blank=False,
