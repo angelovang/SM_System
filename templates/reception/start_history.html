@@ -4,21 +4,22 @@
 {% block content %}
     <h2 class="center">Start history</h2>
 <div class="row info div div">    
-    <div class="info div.container column">
-        <form method="post" >
-            {{select_form}}
-            {% csrf_token %}
-            
+{#    <div class="info div.container column">#}
+{#        <form method="post" >#}
+{#            {{select_form}}#}
+{#            {% csrf_token %}#}
+{##}
 {#            {% if client_saved  %}#}
 {#                <h3 class="center" style="color: darkgreen">Client is saved successfully !</h3>#}
 {#            {% else %}#}
 {#                <input type="submit" value="Submit" class="center"  >#}
 {#            {% endif %}#}
-        </form>
-    </div>
+{#        </form>#}
+{#    </div>#}
         
     <div class="info div.container column">
         <form method="post"  >
+             {{select_form}}
             {{history_form}}
             {% csrf_token %}
             

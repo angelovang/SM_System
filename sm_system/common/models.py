@@ -1,11 +1,11 @@
 from django.db import models
 
-DEVICE = {
-    'computer': 'Computer',
-    'laptop': 'Laptop',
-    'monitor': 'Monitor',
-    'printer': 'Printer'
-}
+DEVICE = (
+    ('computer', 'Computer'),
+    ('laptop', 'Laptop'),
+    ('monitor', 'Monitor'),
+    ('printer', 'Printer')
+)
 
 
 class ServiceInfo(models.Model):

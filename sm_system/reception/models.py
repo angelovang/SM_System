@@ -7,22 +7,24 @@ from sm_system.clients.models import Client
 from tools.generate_id import generate_unique_id
 from tools.last_client import last_client
 
-ORDER_STATUS = {
-    'open': 'Open',
-    'in_progress': 'In progress',
-    'completed': 'Completed',
-    'closed': 'Closed'
-}
 
-DEVICE_TYPE = {
-    'computer': 'Computer',
-    'laptop': 'Laptop',
-    'monitor': 'Monitor',
-    'printer': 'Printer'
-}
 
 
 class ServiceOrder(models.Model):
+    ORDER_STATUS = (
+        ('open', 'Open'),
+        ('in_progress', 'In progress'),
+        ('completed', 'Completed'),
+        ('closed', 'Closed')
+    )
+
+    DEVICE_TYPE = (
+        ('computer', 'Computer'),
+        ('laptop', 'Laptop'),
+        ('monitor', 'Monitor'),
+        ('printer', 'Printer')
+    )
+
     SK_MAX_LEN = 20
     DEVICE_TYPE_MAX_LEN = 20
     DEVICE_DATA_MAX_LEN = 200
