@@ -8,8 +8,6 @@ from tools.generate_id import generate_unique_id
 from tools.last_client import last_client
 
 
-
-
 class ServiceOrder(models.Model):
     ORDER_STATUS = (
         ('open', 'Open'),
@@ -46,16 +44,21 @@ class ServiceOrder(models.Model):
         default=date.today,
     )
 
-    client = models.ForeignKey(Client, on_delete=models.CASCADE, null=False, blank=False, default=last_client())
+    close_date = models.DateField(
+        blank=True,
+        null=True,
+        default=date.today
+    )
 
-    technician = models.ForeignKey(SmsUser, on_delete=models.CASCADE, null=True, blank=True)
+    client = models.ForeignKey(Client, on_delete=models.DO_NOTHING, null=False, blank=False, default=last_client())
+
+    technician = models.ForeignKey(SmsUser, on_delete=models.DO_NOTHING, null=True, blank=True)
 
     device_type = models.CharField(
         max_length=DEVICE_TYPE_MAX_LEN,
         choices=DEVICE_TYPE,
         null=False,
         blank=False,
-
     )
 
     device_data = models.CharField(

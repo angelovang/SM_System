@@ -5,6 +5,8 @@ from tools.validators import first_char_capital_validator, is_letter_validator, 
 
 
 class Client(models.Model):
+    use_in_migration = True
+
     FIRST_NAME_MIN_LEN = 2
     FIRST_NAME_MAX_LEN = 30
 
