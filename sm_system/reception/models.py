@@ -83,27 +83,54 @@ class ServiceOrder(models.Model):
     def __str__(self):
         return f'{self.id}--{self.client}--{self.device_type}--{self.issue_description}'
 
+    def assign_to(self, technician):
+        self.technician = technician
+
+        if self.status == 'open':
+            self.status = "in_progress"
+
+        # Order history create
+        current_status = OrdersHistory.objects.filter(order_id=self.id)
+        print (current_status)
+        if not current_status:
+            OrdersHistory.objects.create(
+                order=self,
+                technician=technician,
+            )
+            self.save()
+            return
+        # TO DO: Kakwo prawim ako we4e ima takyw zapis ?
+        # else:
+        #     return Exception('This order has already been started')
+
 
 class OrdersHistory(models.Model):
-    order = models.ForeignKey(ServiceOrder, on_delete=models.CASCADE)
-    technician = models.ForeignKey(SmsUser, on_delete=models.CASCADE, null=True, blank=True)
+    order = models.ForeignKey(ServiceOrder, on_delete=models.DO_NOTHING)
+    technician = models.ForeignKey(SmsUser, on_delete=models.DO_NOTHING, null=True, blank=True)
 
     start_date = models.DateField(
         default=date.today,
-        blank=False,
         null=False,
+        blank=False,
     )
 
     date_of_complete = models.DateField(
-        blank=True,
-        null=True,
         default=date.today,
+        null=True,
+        blank=True,
     )
 
-    resolution_description = models.TextField()
+    resolution_description = models.TextField(
+        default=None,
+        null=True,
+        blank=True,
+    )
 
     price = models.FloatField(
         default=0.00,
         null=False,
         blank=False,
     )
+
+    def __str__(self):
+        return f'{self.id}--{self.order}--{self.start_date}'

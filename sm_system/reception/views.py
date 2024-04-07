@@ -57,30 +57,28 @@ class SelectOrderView(ListView):
 
 
 def start_repair(request, pk):
-    user = request.user
-    selected_order = ServiceOrder.objects.filter(pk=pk).values()[0]
-    selected_order['technician']= user
-    print(selected_order)
-    print(user)
-    
-    if request.method == 'POST':
-        select_form = RepairStartForm(request.POST)
-        history_form = HistoryForm(request.POST)
-        if select_form.is_valid() and history_form.is_valid():
-            select_form.save()
-            history_form.save()
-    
-    else:
-        select_form = RepairStartForm(initial=selected_order)
-        history_form = HistoryForm(initial={'order':selected_order})
+    order_id = pk
+    current_user = request.user
+    selected_order = ServiceOrder.objects.filter(pk=pk).get()
+    selected_order.assign_to(technician=current_user)
+    selected_order = ServiceOrder.objects.filter(pk=pk).get()
+    order_history = OrdersHistory.objects.last()
+
+    #history_id = order_history.last()
+
+    assigned_order_form = RepairStartForm(instance=selected_order)
+    order_history_form = HistoryForm(instance=order_history)
 
     context = {
-        'select_form': select_form,
-        'history_form': history_form,
+        'order_id': order_id,
+        'history_id': order_history.id,
+        'assigned_order_form': assigned_order_form,
+        'order_history_form': order_history_form,
     }
     return render(request, 'reception/start_history.html', context)
 
-
+def repair_started(request):
+    pass
 
 class EndRepairView(UpdateView):
     model = OrdersHistory

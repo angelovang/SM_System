@@ -26,7 +26,6 @@
             <td>{{ order.status }}</td>
             <td>{{ order.technician }}</td>
             <td><a class="edit-button" href="{% url 'start_repair' pk=order.pk %}" >Select order</a></td>
-{#            <td><a class="edit-button" style="background-color: #c81e1e; color:white" href="{% url 'delete_order' pk=order.pk %}" >Delete order</a></td>#}
         </tr>
         {% empty %}
             <h2 class="center" >No records !</h2>

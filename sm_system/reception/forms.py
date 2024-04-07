@@ -28,6 +28,15 @@ class RepairStartForm(forms.ModelForm):
         model = ServiceOrder
         fields = ['accept_date','client','device_data','issue_description','status','technician']
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['accept_date'].disabled = True
+        self.fields['client'].disabled = True
+        self.fields['device_data'].disabled = True
+        self.fields['issue_description'].disabled = True
+        self.fields['status'].disabled = True
+        self.fields['technician'].disabled = True
+
 
 class HistoryForm(forms.ModelForm):
     class Meta:

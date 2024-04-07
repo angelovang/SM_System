@@ -4,7 +4,7 @@ from sm_system.reception.views import \
     OrdersListView, \
     OrderEditView, \
     OrderDeleteView, \
-    EndRepairView, SelectOrderView, start_repair
+    EndRepairView, SelectOrderView, start_repair, repair_started
 
 urlpatterns = [
     path('create-order/', OrderCreateView.as_view(), name='create_order'),
@@ -13,5 +13,6 @@ urlpatterns = [
     path('delete-order/<int:pk>', OrderDeleteView.as_view(), name='delete_order'),
     path('select-order/', SelectOrderView.as_view(), name='select_order'),
     path('start-repair/<int:pk>', start_repair, name='start_repair'),
+    path('repair-started/<int:pk>', repair_started, name='repair_started'),
     path('end-repair/', EndRepairView.as_view(), name='end_repair'),
 ]
