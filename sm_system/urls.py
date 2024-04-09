@@ -1,4 +1,5 @@
 from django.contrib import admin
+
 from django.urls import path, include
 
 urlpatterns = [
@@ -10,3 +11,4 @@ urlpatterns = [
     path('management/', include('sm_system.management.urls')),
     path('warehouse/', include('sm_system.warehouse.urls')),
 ]
+

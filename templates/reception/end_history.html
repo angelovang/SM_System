@@ -1,1 +1,20 @@
-<h1>End history</h1>
+{% extends 'home_page.html' %}
+{% load static %}
+
+{% block content %}
+    <h2 class="center"> End repair :</h2>
+<div class="info div.container ">
+    <form method="post"  >
+        {{form.as_p}}
+        {% csrf_token %}
+
+        <input type="submit" value="Update" class="center" >
+        <div style="display:flex; align-items: inherit">
+            <a href="" onclick="window.print()" class="center">Print a copy</a>
+            <a href="{% url 'orders_list' %}"  class="center">Back to orders list</a>
+        </div>
+       
+
+    </form>
+</div>
+{% endblock %}

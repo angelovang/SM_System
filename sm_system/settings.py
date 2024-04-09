@@ -29,7 +29,7 @@ INSTALLED_APPS = [
     "sm_system.accounts",
     "sm_system.clients",
     "sm_system.common",
-    "sm_system.reception",
+    "sm_system.reception.apps.ReceptionConfig",
     "sm_system.management",
     "sm_system.warehouse",
 ]
@@ -121,3 +121,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'accounts.SmsUser'
 
 DATETIME_INPUT_FORMATS =  "%m/%d/%Y %H:%M"   # '10/25/2006 14:30'
+
+# LOGIN_REDIRECT_URL = reverse_lazy("index")
+# LOGIN_URL = reverse_lazy("signin user")
+# LOGOUT_REDIRECT_URL = reverse_lazy("index")
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp-relay.brevo.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'angelovang55@gmail.com'
+EMAIL_HOST_PASSWORD = 'MYHzGUTQvAJWgs2L'

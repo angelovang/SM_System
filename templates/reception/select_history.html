@@ -1,0 +1,36 @@
+{% extends 'home_page.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="info div "  >
+    <h2 class="headers">Orders assigned to {{ request.user.get_full_name }} :</h2>
+
+    <table class="table" style="width: 100%">
+        <tr >
+            <th>Order</th>
+            <th>Technician</th>
+            <th>Start date</th>
+            <th>Date of complete</th>
+            <th>Resolution description</th>
+            <th>Price</th>
+        </tr>
+        {% for order in object_list %}
+        <tr>
+            <td>{{ order.order }}</td>
+            <td>{{ order.technician }}</td>
+            <td>{{ order.start_date }}</td>
+            <td>{{ order.date_of_complete }}</td>
+            <td>{{ order.resolution_description }}</td>
+            <td>{{ order.price }}</td>
+            <td>{{ order.completed }}</td>
+            <td><a class="edit-button" href="{% url 'end_repair' pk=order.pk %}" >Select history order</a></td>
+        </tr>
+        {% empty %}
+            <h2 class="center" >No records !</h2>
+        {% endfor %}
+
+    </table>
+
+</div>
+{% endblock %}

@@ -15,7 +15,7 @@
             
         {% elif request.user.user_type == 'technician' or request.user.user_type == 'manager'%}
             <a href="{% url 'select_order' %}"><i class="fa fa-solid fa-hourglass-start"></i> Start repair</a>
-            <a href="{% url 'end_repair' %}"><i class="fa fa-solid fa-hourglass-end"></i> End repair</a>
+            <a href="{% url 'repairs_in_progress' %}"><i class="fa fa-solid fa-hourglass-end"></i> End repair</a>
         {% endif %}    
     {% endif %}
 

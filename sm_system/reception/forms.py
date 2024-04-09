@@ -26,7 +26,8 @@ class OrderForm(forms.ModelForm):
 class RepairStartForm(forms.ModelForm):
     class Meta:
         model = ServiceOrder
-        fields = ['accept_date','client','device_data','issue_description','status','technician']
+        fields = ['accept_date','client','device_data','issue_description',
+                  'status','technician']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -38,9 +39,22 @@ class RepairStartForm(forms.ModelForm):
         self.fields['technician'].disabled = True
 
 
-class HistoryForm(forms.ModelForm):
+class HistoryStartForm(forms.ModelForm):
     class Meta:
         model = OrdersHistory
-        fields = '__all__'
+        fields = ['order', 'technician', 'start_date']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['order'].disabled = True  
+        self.fields['technician'].disabled = True
+        self.fields['start_date'].disabled = True
+
+
+class HistoryEndForm(forms.ModelForm):
+    class Meta:
+        model = OrdersHistory
+        fields = ['order', 'technician', 'start_date', 'date_of_complete',
+                  'resolution_description', 'price', 'completed']
 
 

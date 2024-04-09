@@ -83,6 +83,7 @@ class ServiceOrder(models.Model):
     def __str__(self):
         return f'{self.id}--{self.client}--{self.device_type}--{self.issue_description}'
 
+
     def assign_to(self, technician):
         self.technician = technician
 
@@ -90,9 +91,8 @@ class ServiceOrder(models.Model):
             self.status = "in_progress"
 
         # Order history create
-        current_status = OrdersHistory.objects.filter(order_id=self.id)
-        print (current_status)
-        if not current_status:
+        is_the_order_unique = OrdersHistory.objects.filter(order_id=self.id)
+        if not is_the_order_unique:
             OrdersHistory.objects.create(
                 order=self,
                 technician=technician,
@@ -102,6 +102,7 @@ class ServiceOrder(models.Model):
         # TO DO: Kakwo prawim ako we4e ima takyw zapis ?
         # else:
         #     return Exception('This order has already been started')
+        return
 
 
 class OrdersHistory(models.Model):
@@ -130,6 +131,10 @@ class OrdersHistory(models.Model):
         default=0.00,
         null=False,
         blank=False,
+    )
+
+    completed = models.BooleanField(
+        default=False
     )
 
     def __str__(self):
