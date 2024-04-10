@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SM_System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">   
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+</head>
+<body style="display:flex; align-items:inherit ; flex-direction: column">
+<div class="hello">
+    <h2 >
+        Wellcome to PC-Service !___<i class="fa fa-solid fa-phone-square"></i> Phone: +359 889 xxx xxx
+    </h2>
+</div>
+<div>
+     <h2 class="headers"> Client Requests information :</h2>
+</div>
+
+<div class="row info div div">
+    <div class="info div.container column" >  
+        <div><h3>Order information :</h3></div>
+     
+        <p><b>Order id: </b>  {{ current_order.so_id }}</p>
+        <hr>
+        <p><b>Accept date: </b>  {{ current_order.accept_date }}</p>
+        <hr>
+        <p><b>Client name: </b>  {{ current_order.client }}</p>
+        <p><b>Client email: </b>  {{ current_order.client.email }}</p>
+        <p><b>Client phone number: </b>  {{ current_order.client.phone_number }}</p>
+        <hr>
+        <p><b>Device data: </b>  {{ current_order.device_data }}</p>
+        <hr>        
+        <p><b>Issue description: </b>  {{ current_order.issue_description }}</p>
+        <hr>
+        <p {% if current_order.status == 'completed'%} style="color: #04AA6D" {% else %}style="color: red"{% endif %}><b>Order status: </b>  {{ current_order.status }}</p>
+
+    </div>
+    {% if current_order.status == 'completed' %}
+        <div class="info div.container column" > 
+            <div><h3>History information :</h3></div>
+            
+            <p><b>Order : </b>  {{ current_history.order }}</p>
+            <hr>
+            <p><b>Tehnician : </b>  {{ current_history.technician }}</p>
+            <hr>
+            <p><b>Start date : </b>  {{ current_history.start_date }}</p>
+            <p><b>Date of complete: </b>  {{ current_history.date_of_complete }}</p>
+            <hr>
+            <p><b>Resolution description : </b>  {{ current_history.resolution_description }}</p>
+            <hr>
+            <p><b>End price : </b>  {{ current_history.price }}</p>
+          
+        </div>
+    {% endif %}
+</div>
+    <div class="info headers" >
+        <a href="" onclick="window.print()" >Print a copy</a>
+        <a href="{% url 'home_page' %}" style="margin-left: 10px">Back home page</a>
+    </div>
+
+</body>
+<footer class="footer">
+    <p>Service: 0889xxxxxx, Sales: 0886 xxx xxx | Email: pc_service@gmail.com</p>
+    <p>Work time : monday-friday 9:00-18:00 | <i class="fa fa-solid fa-copyright"></i> PC_Service.bg</p>
+</footer>
+</html>
