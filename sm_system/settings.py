@@ -26,11 +26,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    "sm_system.accounts",
-    "sm_system.clients",
-    "sm_system.common",
-    "sm_system.reception.apps.ReceptionConfig",
-    "sm_system.management"
+    'rest_framework',
+
+    'sm_system.accounts',
+    'sm_system.clients',
+    'sm_system.common',
+    'sm_system.reception.apps.ReceptionConfig',
+    'sm_system.management',
+    'sm_system.api.apps.ApiConfig',
 ]
 
 MIDDLEWARE = [

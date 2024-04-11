@@ -1,3 +1,4 @@
+from django.core.exceptions import ValidationError
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, ListView, DeleteView
@@ -13,8 +14,12 @@ def clients_view(request):
 def client_order_info(request):
     search_code = request.GET.get('search2')
 
-    current_order = ServiceOrder.objects.filter(so_id=search_code).get()
-    current_history = OrdersHistory.objects.filter(order_id=current_order.pk).get()
+    try:
+        current_order = ServiceOrder.objects.filter(so_id=search_code).get()
+        current_history = OrdersHistory.objects.filter(order_id=current_order.pk).get()
+    except:
+        context = {'error': 'ERROR: You entered the wrong code or there is no such order !'}
+        return render(request, 'clients/client_view.html', context)
 
     context = {
         'current_order': current_order,

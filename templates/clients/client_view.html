@@ -4,6 +4,9 @@
 {% block content %}
 
 <h2 class="headers">Client Requests Information</h2>
+    {% if error %}
+        <h3 class="headers" style="color: red">{{ error }}</h3> 
+    {% endif %}
 
 <div class="info div ">
      <h3 class="headers">Please enter the code of your order :</h3>

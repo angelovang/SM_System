@@ -78,3 +78,24 @@ class PrintersListView(ListView):
 
 
 
+class DeviceListView(ListView):
+    model = ServiceInfo
+    template_name = 'common/devices.html'
+    context_object_name = 'device_list'
+    device_mapping = {
+        'computer': 'Computers',
+        'laptop': 'Laptops',
+        'monitor': 'Monitors',
+        'printer': 'Printers',
+    }
+
+    def get_queryset(self):
+        device_type = self.kwargs.get('device_type')
+        if device_type in self.device_mapping:
+            return super().get_queryset().filter(device=device_type)
+        return super().get_queryset()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['device_category'] = self.device_mapping.get(self.kwargs.get('device_type'))
+        return context

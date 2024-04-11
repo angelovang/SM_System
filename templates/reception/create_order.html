@@ -1,6 +1,11 @@
 {% extends 'home_page.html' %}
 {% load static %}
 
+{% block extra_header %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tarekraafat-autocomplete.js/10.2.7/css/autoComplete.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tarekraafat-autocomplete.js/10.2.7/autoComplete.min.js"></script>
+{% endblock %}
+
 {% block content %}
 <div>
     <h2 class="center">Create Order</h2>
@@ -15,4 +20,88 @@
         </form>
     </div>
 </div>
+{% endblock %}
+
+{% block body_javascript %}
+<script>
+const clientsApiUrl = document.getElementById("autoComplete").dataset.apiClients ;
+let autoCompleteConfig = {
+  placeHolder: "Намери клиент по име/телефон/email",
+  searchEngine: "loose",
+  data: {
+    src: async (query) => {
+      try {
+        // Fetch Data from external Source
+        const source = await fetch(`${clientsApiUrl}?q=${query}`);
+        // Data should be an array of `Objects` or `Strings`
+        return await source.json();
+      } catch (error) {
+        return error;
+      }
+    },
+    filter: (matchedList) => {
+      let idsMatched = [];
+      let finalResult = [];
+      // filter out duplicating results. and they may happen because of the multiple keys
+      matchedList.forEach(matched => {
+        if (!idsMatched.includes(matched.value.id)) {
+          idsMatched.push(matched.value.id);
+          finalResult.push(matched);
+        }
+      })
+      return finalResult;
+    },
+    cache: false,
+    keys: ["first_name", "last_name", "email", "phone_number"],
+  },
+  resultItem: {
+    tag: "li",
+    class: "autoComplete_result",
+    element: (item, data) => {
+      let fullClientData = data.value;
+      let keyMatched = data.key;
+
+      item.innerHTML = '';
+      Object.entries(fullClientData).forEach(([key, value]) => {
+        if (key === "id") { return; }
+        if (key === keyMatched) {
+          // data.match adds in some <mark> things, so use it
+          item.innerHTML += `<span style="margin-right:5px">${ data.match }</span>`;
+        } else {
+          item.innerHTML += `<span style="margin-right:5px">${ value }</span>`;
+        }
+      })
+    },
+    highlight: "autoComplete_highlight",
+    selected: "autoComplete_selected"
+  },
+}
+
+const autoCompleteJS = new autoComplete(autoCompleteConfig);
+
+document.querySelector("#autoComplete").addEventListener("selection", function (event) {
+  // "event.detail" carries the autoComplete.js "feedback" object
+  let selectedClient = event.detail.selection.value;
+
+  let idClient = document.querySelector("#id_client");
+
+  // make the input equal to the selection, and hide it.
+  document.querySelector("#autoComplete").value = selectedClient[event.detail.selection.key];
+  document.querySelector("#autoComplete").hidden = true;
+
+  idClient.value = selectedClient.id;
+
+  // input info in the html what user was selected (and hidden input with the id for future form)
+  document.querySelector("#autoCompleteSelected").innerHTML = `
+  <div>
+    <div>Поръчката е за клиент:</div>
+    <div>${JSON.stringify(selectedClient)}</div>
+    <div style="margin:20px 0">
+      <a href="#" onclick="document.querySelector('#autoComplete').hidden = false">избери друг клиент?</a>
+    </div>
+  </div>
+  `;
+});
+
+</script>
 {% endblock %}

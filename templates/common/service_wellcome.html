@@ -54,18 +54,18 @@
     <div class="column_main" style="align-items: center">
         <h2 class="headers">Types of repairs and prices:</h2>
         <ul id="myUL" style="width: 100%">
-          <li><a href="{% url 'computers' %}"><i class="fa fa-solid fa-desktop"></i> Desktop computers</a></li>
-            {% block computers %}
-            {% endblock %}
-          <li><a href="{% url 'laptops' %}"><i class="fa fa-solid fa-laptop"></i> Laptops</a></li>
-            {% block laptops %}
-            {% endblock %}
-          <li><a href="{% url 'monitors' %}"><i class="fa fa-solid fa-tv"></i> Monitors</a></li>
+            <li><a href="{% url 'device-list' device_type='computer'%}"><i class="fa fa-solid fa-desktop"></i> Desktop computers</a></li>
+                {% block computers %}
+                {% endblock %}
+            <li><a href="{% url 'device-list' device_type='laptop' %}"><i class="fa fa-solid fa-laptop"></i> Laptops</a></li>
+                {% block laptops %}
+                {% endblock %}
+            <li><a href="{% url 'device-list' device_type='monitor' %}"><i class="fa fa-solid fa-tv"></i> Monitors</a></li>
                 {% block monitors %}
-            {% endblock %}
-          <li><a href="{% url 'printers' %}"><i class="fa fa-solid fa-print"></i> Printers</a></li>
-                {% block printers %}
-            {% endblock %}
+                {% endblock %}
+            <li><a href="{% url 'device-list' device_type='printer' %}"><i class="fa fa-solid fa-print"></i> Printers</a></li>
+                {% block repair_type %}
+                {% endblock %}
         </ul>
         
         <h2 class="headers">Where to find us :</h2>
