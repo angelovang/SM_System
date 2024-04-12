@@ -1,7 +1,8 @@
-from django import forms
 from django.contrib.auth import mixins as auth_mixins
+
 from django.shortcuts import render
 from django.urls import reverse_lazy
+
 from django.views import generic as generic_views
 from django.views.generic import ListView, UpdateView, DeleteView
 
@@ -27,7 +28,7 @@ class CreateServiceInfo(auth_mixins.LoginRequiredMixin, generic_views.CreateView
 class AllTasksListView(auth_mixins.LoginRequiredMixin, ListView):
     model = ServiceInfo
     template_name = 'common/all-tasks.html'
-
+    paginate_by = 7
     def get_queryset(self):
         return super().get_queryset()
 
@@ -45,7 +46,7 @@ class TaskDeleteView(auth_mixins.LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy('all_tasks')
 
 
-class DeviceListView(ListView):
+class PriceListView(auth_mixins.LoginRequiredMixin,ListView):
     model = ServiceInfo
     template_name = 'common/price-list.html'
     context_object_name = 'device_list'

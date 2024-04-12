@@ -2,9 +2,9 @@ from django.db.models import Q
 from rest_framework.generics import ListAPIView
 from sm_system.clients.models import Client
 from .serializers import ClientSerializer
+from django.contrib.auth import mixins as auth_mixins
 
-
-class APIClientListView(ListAPIView):
+class APIClientListView(auth_mixins.LoginRequiredMixin,ListAPIView):
     queryset = Client.objects.all()
     serializer_class = ClientSerializer
 
