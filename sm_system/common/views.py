@@ -20,13 +20,13 @@ class CreateServiceInfo(auth_mixins.LoginRequiredMixin, generic_views.CreateView
         'description': 'Repair description:',
         'price': 'Price as text:'
     }
-    template_name = 'common/create_service_task.html'
+    template_name = 'common/create-service-task.html'
     success_url = '/info/create_task'
 
 
 class AllTasksListView(auth_mixins.LoginRequiredMixin, ListView):
     model = ServiceInfo
-    template_name = 'common/all_tasks.html'
+    template_name = 'common/all-tasks.html'
 
     def get_queryset(self):
         return super().get_queryset()
@@ -35,52 +35,19 @@ class AllTasksListView(auth_mixins.LoginRequiredMixin, ListView):
 class TaskEditView(auth_mixins.LoginRequiredMixin, UpdateView):
     model = ServiceInfo
     fields = '__all__'
-    template_name = 'common/edit_task.html'
+    template_name = 'common/edit-task.html'
     success_url = '/info/all_tasks'
 
 
 class TaskDeleteView(auth_mixins.LoginRequiredMixin, DeleteView):
-    template_name = 'common/delete_task.html'
+    template_name = 'common/delete-task.html'
     model = ServiceInfo
     success_url = reverse_lazy('all_tasks')
 
 
-class ComputersListView(ListView):
-    model = ServiceInfo
-    template_name = 'common/computers.html'
-
-    def get_queryset(self):
-        return super().get_queryset().filter(device='computer')
-
-
-class LaptopsListView(ListView):
-    model = ServiceInfo
-    template_name = 'common/laptops.html'
-
-    def get_queryset(self):
-        return super().get_queryset().filter(device='laptop')
-
-
-class MonitorsListView(ListView):
-    model = ServiceInfo
-    template_name = 'common/monitors.html'
-
-    def get_queryset(self):
-        return super().get_queryset().filter(device='monitor')
-
-
-class PrintersListView(ListView):
-    model = ServiceInfo
-    template_name = 'common/printers.html'
-
-    def get_queryset(self):
-        return super().get_queryset().filter(device='printer')
-
-
-
 class DeviceListView(ListView):
     model = ServiceInfo
-    template_name = 'common/devices.html'
+    template_name = 'common/price-list.html'
     context_object_name = 'device_list'
     device_mapping = {
         'computer': 'Computers',

@@ -17,6 +17,7 @@ class OrderCreateView(CreateView):
 class OrdersListView(ListView):
     model = ServiceOrder
     template_name = 'reception/orders_list.html'
+    paginate_by = 6
 
     def get_queryset(self):
         return super().get_queryset()

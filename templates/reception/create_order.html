@@ -8,15 +8,29 @@
 
 {% block content %}
 <div>
-    <h2 class="center">Create Order</h2>
+    <h2 class="headers">Create Order</h2>
         
-    <div class="info div.container column">
-        <form method="post"  >
-            {{form}}
+    <div class="info div.container">
+        <form method="post">
             {% csrf_token %}
+            <div class="info div.container">
+                {{ form.errors }}
+                {{ form.accept_date }}
+                {{ form.client }} 
+                
+                <div class="client_search_and_select">
+                  <div id="autoCompleteSelected"></div>
+                  <input id="autoComplete" data-api-clients="{% url 'api:clients_list' %}" />
+                </div>
+                
+                {{ form.device_type }}
+                {{ form.device_data }}
+                {{ form.issue_description }}
+                {{ form.status }}
+            </div>
             
-            <input type="submit" value="Submit" class="center"  >
-            <a href="{% url 'orders_list' %}" class="center" >Back to Order list</a>
+                <input type="submit" value="Submit" class="center"  >
+                <a href="{% url 'orders_list' %}" class="center" >Back to Order list</a>
         </form>
     </div>
 </div>
@@ -26,7 +40,7 @@
 <script>
 const clientsApiUrl = document.getElementById("autoComplete").dataset.apiClients ;
 let autoCompleteConfig = {
-  placeHolder: "Намери клиент по име/телефон/email",
+  placeHolder: "Find a client by name/surname/phone:",
   searchEngine: "loose",
   data: {
     src: async (query) => {
@@ -52,7 +66,7 @@ let autoCompleteConfig = {
       return finalResult;
     },
     cache: false,
-    keys: ["first_name", "last_name", "email", "phone_number"],
+    keys: ["first_name", "last_name", "phone_number"],
   },
   resultItem: {
     tag: "li",
@@ -94,10 +108,10 @@ document.querySelector("#autoComplete").addEventListener("selection", function (
   // input info in the html what user was selected (and hidden input with the id for future form)
   document.querySelector("#autoCompleteSelected").innerHTML = `
   <div>
-    <div>Поръчката е за клиент:</div>
-    <div>${JSON.stringify(selectedClient)}</div>
+    <div>Selected client is: ${selectedClient.first_name} ${selectedClient.last_name} - phone: ${selectedClient.phone_number}</div>
+
     <div style="margin:20px 0">
-      <a href="#" onclick="document.querySelector('#autoComplete').hidden = false">избери друг клиент?</a>
+      <a href="#" onclick="document.querySelector('#autoComplete').hidden = false">Another client's choice?</a>
     </div>
   </div>
   `;
