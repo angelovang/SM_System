@@ -46,7 +46,7 @@ class TaskDeleteView(auth_mixins.LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy('all_tasks')
 
 
-class PriceListView(auth_mixins.LoginRequiredMixin,ListView):
+class PriceListView(ListView):
     model = ServiceInfo
     template_name = 'common/price-list.html'
     context_object_name = 'device_list'

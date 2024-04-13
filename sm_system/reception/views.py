@@ -62,22 +62,23 @@ def start_repair(request, pk):
     order_id = pk
     current_user = request.user
 
-    selected_order = ServiceOrder.objects.filter(pk=pk).get()
-    selected_order.assign_to(technician=current_user)
+    if request.method == "POST":
+        selected_order = ServiceOrder.objects.filter(pk=pk).get()
+        selected_order.assign_to(technician=current_user)
 
-    selected_order = ServiceOrder.objects.filter(pk=pk).get()
-    order_history = OrdersHistory.objects.last()
+        selected_order = ServiceOrder.objects.filter(pk=pk).get()
+        order_history = OrdersHistory.objects.last()
 
-    assigned_order_form = RepairStartForm(instance=selected_order)
-    order_history_form = HistoryStartForm(instance=order_history)
+        assigned_order_form = RepairStartForm(instance=selected_order)
+        order_history_form = HistoryStartForm(instance=order_history)
 
-    context = {
-        'order_id': order_id,
-        'history_id': order_history.id,
-        'assigned_order_form': assigned_order_form,
-        'order_history_form': order_history_form,
-    }
-    return render(request, 'reception/start_history.html', context)
+        context = {
+            'order_id': order_id,
+            'history_id': order_history.id,
+            'assigned_order_form': assigned_order_form,
+            'order_history_form': order_history_form,
+        }
+        return render(request, 'reception/start_history.html', context)
 
 
 class RepairsInProgressView(auth_mixins.LoginRequiredMixin,ListView):

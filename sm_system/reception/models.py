@@ -83,10 +83,10 @@ class ServiceOrder(models.Model):
     def __str__(self):
         return f'{self.id}--{self.client}--{self.device_type}--{self.issue_description}'
 
-
     def assign_to(self, technician):
         self.technician = technician
 
+        #Check order status
         if self.status == 'open':
             self.status = "in_progress"
 
@@ -99,9 +99,6 @@ class ServiceOrder(models.Model):
             )
             self.save()
             return
-        # TO DO: Kakwo prawim ako we4e ima takyw zapis ?
-        # else:
-        #     return Exception('This order has already been started')
         return
 
 

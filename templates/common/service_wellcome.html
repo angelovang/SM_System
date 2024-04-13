@@ -5,51 +5,7 @@
 
 <div class="row_main">
     
-    <div class="column_main" style="background-color: whitesmoke; {% if request.user.is_authenticated %} visibility: hidden;{% endif %}">
-        <div class="column_main">
-            <div class="card" style="background-color: lightgray ">
-            <h3>Computer repairs</h3>
-            <div>
-                <p>
-                   Diagnostics, prevention and repair of computers and power supplies.
-                    Software services, upgrade and full denoise. If the repair of your computer is too expensive,
-                    we can offer you the sale of a new or second-hand computer, monitor or laptop and others. 
-                </p>
-            </div>
-            </div>
-            <div class="card" style="background-color: #c7c2c2">
-            <h3>Laptop repairs</h3>
-            <div>
-                <p>
-                   The repair shop carries out total repairs of all brands and models of laptops.
-                    Repair of motherboards, replacement of chipsets and video cards, dust cleaning 
-                    with disassembly and replacement of thermal pads and thermal paste. 
-                    Repair or replacement of screens - matrices. Replacement of broken bushings. 
-                </p>
-            </div>
-            </div>
-            <div class="card" style="background-color: lightgray">
-            <h3>Monitor repairs</h3>
-            <div>
-                <p>
-                    Diagnostics of damaged monitors is not free, and the customer is notified in advance 
-                    of the cost of the repair. The most common repairs are on the inverter board,
-                    power supply and replacement of backlight lamps.
-                </p>
-            </div>
-            </div>
-            <div class="card" style="background-color: #c7c2c2">
-            <h3>Printers repairs</h3>
-            <div>
-                <p>
-                    We offer specialized services in repair, repair, cleaning, diagnostics,
-                    prevention, maintenance, overall service and printer service 
-                    (laser, ink jet, dot matrix, thermal, etc.)
-                </p>
-            </div>
-            </div>
-        </div>
-    </div>
+    {% include 'common/services.html' %}
     
     <div class="column_main" style="align-items: center">
         <h2 class="headers">Types of repairs and prices:</h2>
@@ -61,57 +17,22 @@
                 {% block repair_type %}
                 {% endblock %}
         </ul>
-        
+    
         <h2 class="headers">Where to find us :</h2>
         <img src="{% static 'images/service_address.jpg' %}" alt="Service location" class="center" style="width: 80%">
         
+        <div class="card" style="margin-top: 30px;margin-bottom: 30px;">
+            <h2><img src="static/images/icon/work_time.png" alt="Consult" style="zoom: 10%">
+                   Work time :
+            </h2>
+            <H3>Monday to friday : 9:00 - 18:00</H3>
+            <H3>Saturday         : 9:00 - 18:00</H3>
+
+        </div>
+    
     </div>
     
-    <div class="column_main" style="background-color:whitesmoke; {% if request.user.is_authenticated %} visibility: hidden;{% endif %}">
-        <div class="column_main">
-            <div class="card" style="background-color: lightgray">
-                <h3>Our mission</h3>
-                <div>
-                    <p>
-                       Our mission is to be professionals, both in the servicing of equipment
-                        and in our relations with our customers. We strive to always provide quality repairs.
-                        Our main goal is for the customer to be satisfied and come back.
-                    </p>
-                </div>
-            </div>
-            <div class="card" style="background-color: #c7c2c2">
-                <h3>Our tim</h3>
-                <div>
-                    <p>
-                       Our team consists of ten highly qualified professionals in each of the areas
-                        in which we offer services.They can advise you on all questions related to your 
-                        equipment, both on site in the service center and over the phone!
-                    </p>
-                </div>
-            </div>
-             <div class="card" style="background-color: lightgray">
-                <h3>Warranty</h3>
-                <div>
-                    <p>
-                       For devices under warranty, we honor the manufacturer's warranty period. 
-                        For devices repaired by us, the warranty period is from 6 months to 1 year, 
-                        depending on the repaired part of the device.
-                    </p>
-                </div>
-            </div>
-                        <div class="card" style="background-color: lightgreen">
-                <h3>Ecology</h3>
-                <div>
-                    <p>
-                       As an environmentally responsible electronics repair company, we ensure that 
-                        end-of-life devices are properly recycled.Therefore, we offer you the opportunity
-                        to return your out-of-use devices, in exchange for which you will receive a 
-                        discount for the spare parts used in the repair.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
+    {% include 'common/mission.html' %}
 
 </div>
 
