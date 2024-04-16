@@ -30,7 +30,7 @@ In this repositories is my first Django project. It is a web based "Computer Ser
     <li>Service order - id, so_id, accept_date, close_date, client, technician, device_type, device_data, issue_description, status</li>
     <li>Job card – id, order, technician, start_date, end_date, resolution_description, price , completed</li>
 </ul>
-<h2>Sranitsi</h2>
+<h2>Pages</h2>
 <ul>
      <li>Home page with information about workshops, services offered and prices</li>
      <li>Working page for the receiver</li>
