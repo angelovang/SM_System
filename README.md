@@ -26,7 +26,7 @@ In this repositories is my first Django project. It is a web based "Computer Ser
 <h2>DB Models / Tables</h2>
 <ul>
     <li>Users - ID, email, password, first_name, last_name, phone_nimber, user_type, profile_picture</li>
-    <li>Customers - id, email, first name, last name, phone number</li>
+    <li>Customers - id, email, first_name, last_name, phone_number</li>
     <li>Service order - id, so_id, accept_date, close_date, client, technician, device_type, device_data, issue_description, status</li>
     <li>Job card – id, order, technician, start_date, end_date, resolution_description, price , completed</li>
 </ul>
