@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls ),
     path('api/', include('sm_system.api.urls', namespace='api')),
     path('',include('sm_system.common.urls')),
     path('accounts/', include('sm_system.accounts.urls')),

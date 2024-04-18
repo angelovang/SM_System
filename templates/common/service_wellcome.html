@@ -18,17 +18,19 @@
                 {% endblock %}
         </ul>
     
-        <h2 class="headers">Where to find us :</h2>
-        <img src="{% static 'images/service_address.jpg' %}" alt="Service location" class="center" style="width: 80%">
-        
-        <div class="card" style="margin-top: 30px;margin-bottom: 30px;">
-            <h2><img src="static/images/icon/work_time.png" alt="Consult" style="zoom: 10%">
-                   Work time :
-            </h2>
-            <H3>Monday to friday : 9:00 - 18:00</H3>
-            <H3>Saturday         : 9:00 - 18:00</H3>
+        {% if not request.user.is_authenticated %}
+            <h2 class="headers">Where to find us :</h2>
+            <img src="{% static 'images/service_address.jpg' %}" alt="Service location" class="center" style="width: 80%">
+            
+            <div class="card" style="margin-top: 30px;margin-bottom: 30px;">
+                <h2><img src="static/images/icon/work_time.png" alt="Consult" style="zoom: 10%">
+                       Work time :
+                </h2>
+                <H3>Monday to friday : 9:00 - 18:00</H3>
+                <H3>Saturday         : 9:00 - 18:00</H3>
 
         </div>
+        {% endif %}
     
     </div>
     

@@ -10,12 +10,12 @@ from sm_system.clients.models import Client
 from sm_system.reception.models import ServiceOrder, OrdersHistory
 
 
-@login_required
+
 def clients_view(request):
     return render(request, 'clients/client_view.html')
 
 
-@login_required
+
 def client_order_info(request):
     search_code = request.GET.get('search2')
 

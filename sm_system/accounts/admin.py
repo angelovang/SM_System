@@ -9,3 +9,4 @@ class ClientAdmin(admin.ModelAdmin):
     list_display_links = ['id', 'email']
     search_fields = ['username']
     search_help_text = 'Search by username'
+

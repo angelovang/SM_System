@@ -50,9 +50,9 @@ class ServiceOrder(models.Model):
         default=date.today
     )
 
-    client = models.ForeignKey(Client, on_delete=models.DO_NOTHING, null=False, blank=False, default=last_client())
+    client = models.ForeignKey(Client, on_delete=models.SET('-1'), null=False, blank=False)
 
-    technician = models.ForeignKey(SmsUser, on_delete=models.DO_NOTHING, null=True, blank=True)
+    technician = models.ForeignKey(SmsUser, on_delete=models.SET_NULL, null=True, blank=True)
 
     device_type = models.CharField(
         max_length=DEVICE_TYPE_MAX_LEN,
@@ -103,8 +103,8 @@ class ServiceOrder(models.Model):
 
 
 class OrdersHistory(models.Model):
-    order = models.ForeignKey(ServiceOrder, on_delete=models.DO_NOTHING)
-    technician = models.ForeignKey(SmsUser, on_delete=models.DO_NOTHING, null=True, blank=True)
+    order = models.ForeignKey(ServiceOrder, on_delete=models.SET(-1))
+    technician = models.ForeignKey(SmsUser, on_delete=models.SET_NULL, null=True, blank=True)
 
     start_date = models.DateField(
         default=date.today,

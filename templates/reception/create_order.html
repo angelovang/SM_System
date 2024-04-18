@@ -98,7 +98,7 @@ document.querySelector("#autoComplete").addEventListener("selection", function (
   let selectedClient = event.detail.selection.value;
 
   let idClient = document.querySelector("#id_client");
-
+ 
   // make the input equal to the selection, and hide it.
   document.querySelector("#autoComplete").value = selectedClient[event.detail.selection.key];
   document.querySelector("#autoComplete").hidden = true;

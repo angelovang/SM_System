@@ -12,11 +12,12 @@
             <a href="{% url 'orders_list' %}"><i class="fa fa-solid fa-list"></i> Orders List</a>
             <a href="{% url 'all_tasks' %}"><i class="fa fa-solid fa-info-circle"></i> Service Tasks</a>
             <a href="{% url 'employees_list' %}"><i class="fa fa-fw fa-user-o"></i> Employees List</a>
-            
+
         {% elif request.user.user_type == 'technician' or request.user.user_type == 'manager'%}
             <a href="{% url 'select_order' %}"><i class="fa fa-solid fa-hourglass-start"></i> Start repair</a>
             <a href="{% url 'repairs_in_progress' %}"><i class="fa fa-solid fa-hourglass-end"></i> End repair</a>
-        {% endif %}    
+            <a href="{% url 'clients_list' %}"><i class="fa fa-fw fa-users"></i> Clients List</a>
+        {% endif %}
     {% endif %}
 
     <div >
