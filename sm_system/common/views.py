@@ -22,7 +22,7 @@ class CreateServiceInfo(auth_mixins.LoginRequiredMixin, generic_views.CreateView
         'price': 'Price as text:'
     }
     template_name = 'common/create-service-task.html'
-    success_url = '/info/create_task'
+    success_url = '/info/create-task'
 
 
 class AllTasksListView(auth_mixins.LoginRequiredMixin, ListView):
@@ -37,7 +37,7 @@ class TaskEditView(auth_mixins.LoginRequiredMixin, UpdateView):
     model = ServiceInfo
     fields = '__all__'
     template_name = 'common/edit-task.html'
-    success_url = '/info/all_tasks'
+    success_url = '/info/all-tasks'
 
 
 class TaskDeleteView(auth_mixins.LoginRequiredMixin, DeleteView):

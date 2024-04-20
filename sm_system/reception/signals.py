@@ -3,7 +3,7 @@ from django.dispatch import receiver
 
 from sm_system.clients.models import Client
 from sm_system.reception.models import OrdersHistory, ServiceOrder
-from tools.send_emeils import send_email
+from tools.send_emails import send_email
 
 
 @receiver(post_save, sender=OrdersHistory)

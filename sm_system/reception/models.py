@@ -39,20 +39,29 @@ class ServiceOrder(models.Model):
     )
 
     accept_date = models.DateField(
+        default=date.today,
         blank=False,
         null=False,
-        default=date.today,
     )
 
     close_date = models.DateField(
         blank=True,
         null=True,
-        default=date.today
     )
 
-    client = models.ForeignKey(Client, on_delete=models.SET('-1'), null=False, blank=False)
+    client = models.ForeignKey(
+        Client,
+        on_delete=models.SET_NULL,
+        null=True
+    )
 
-    technician = models.ForeignKey(SmsUser, on_delete=models.SET_NULL, null=True, blank=True)
+    technician = models.ForeignKey(
+        SmsUser,
+        on_delete=models.SET_NULL,
+        limit_choices_to={'user_type': 'technician'},
+        null=True,
+        blank=True
+    )
 
     device_type = models.CharField(
         max_length=DEVICE_TYPE_MAX_LEN,
@@ -103,8 +112,17 @@ class ServiceOrder(models.Model):
 
 
 class OrdersHistory(models.Model):
-    order = models.ForeignKey(ServiceOrder, on_delete=models.SET(-1))
-    technician = models.ForeignKey(SmsUser, on_delete=models.SET_NULL, null=True, blank=True)
+    order = models.ForeignKey(
+        ServiceOrder,
+        on_delete=models.SET_NULL,
+        null=True,
+    )
+    technician = models.ForeignKey(
+        SmsUser,
+        on_delete=models.SET_NULL,
+        limit_choices_to={'user_type':'technician'},
+        null=True,
+    )
 
     start_date = models.DateField(
         default=date.today,
@@ -113,7 +131,6 @@ class OrdersHistory(models.Model):
     )
 
     date_of_complete = models.DateField(
-        default=date.today,
         null=True,
         blank=True,
     )

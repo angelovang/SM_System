@@ -1,5 +1,5 @@
 from django.contrib.auth import mixins as auth_mixins
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import PermissionRequiredMixin
 
 from django.shortcuts import render
 from django.urls import reverse_lazy
@@ -10,10 +10,8 @@ from sm_system.clients.models import Client
 from sm_system.reception.models import ServiceOrder, OrdersHistory
 
 
-
 def clients_view(request):
     return render(request, 'clients/client_view.html')
-
 
 
 def client_order_info(request):
@@ -33,7 +31,8 @@ def client_order_info(request):
     return render(request, 'clients/client_order_info.html', context)
 
 
-class ClientCreateView(auth_mixins.LoginRequiredMixin, CreateView):
+class ClientCreateView(auth_mixins.LoginRequiredMixin, PermissionRequiredMixin, CreateView):
+    permission_required = 'clients.add_client'
     model = Client
     fields = '__all__'
     template_name = 'clients/create_client.html'
@@ -49,14 +48,16 @@ class ClientListView(auth_mixins.LoginRequiredMixin, ListView):
         return super().get_queryset()
 
 
-class ClientEditView(auth_mixins.LoginRequiredMixin, UpdateView):
+class ClientEditView(auth_mixins.LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
+    permission_required = 'clients.change_client'
     model = Client
     fields = '__all__'
     template_name = 'clients/edit_client.html'
     success_url = reverse_lazy('clients_list')
 
 
-class ClientDeleteView(auth_mixins.LoginRequiredMixin, DeleteView):
+class ClientDeleteView(auth_mixins.LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
+    permission_required = 'clients.delete_client'
     template_name = 'clients/delete_client.html'
     model = Client
     success_url = reverse_lazy('clients_list')

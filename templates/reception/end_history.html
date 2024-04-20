@@ -5,16 +5,14 @@
     <h2 class="center"> End repair :</h2>
 <div class="info div.container ">
     <form method="post"  >
+        
         {{form.as_p}}
         {% csrf_token %}
 
-        <input type="submit" value="Update" class="center" >
-        <div style="display:flex; align-items: inherit">
-            <a href="" onclick="window.print()" class="center">Print a copy</a>
-            <a href="{% url 'orders_list' %}"  class="center">Back to orders list</a>
-        </div>
-       
-
+        <input type="submit" value="End history order" class="center" >
+        
+        <a href="{% url 'select_order' %}"  class="center">Back to start list</a>
+        
     </form>
 </div>
 {% endblock %}

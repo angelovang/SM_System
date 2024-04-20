@@ -4,7 +4,8 @@ from sm_system.clients.models import Client
 from .serializers import ClientSerializer
 from django.contrib.auth import mixins as auth_mixins
 
-class APIClientListView(auth_mixins.LoginRequiredMixin,ListAPIView):
+
+class APIClientListView(auth_mixins.LoginRequiredMixin, ListAPIView):
     queryset = Client.objects.all()
     serializer_class = ClientSerializer
 
